@@ -1,0 +1,161 @@
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: var(--color-primary);
+  font-family: "Josefin Sans", sans-serif !important;
+  font-size: var(--size) !important;
+}
+.d {
+  font-size: 6rem;
+
+  color: var(--font-color) !important;
+}
+
+.text-success {
+  color: var(--color-light) !important;
+}
+.border-orange{
+  border-color: var(--font-color) !important;
+  
+}
+#login {
+  background-image: url("../logo/logo.png") !important;
+  background-repeat: no-repeat;
+  background-position: 99% 50%;
+}
+
+.bg-lightPink {
+  background-color: var(--color-secondary);
+}
+
+form {
+  color: var(--font-color) !important;
+}
+.btn-orange {
+  background-color: var(--font-color) !important;
+  color: var(--color-primary);
+}
+.btn-orange:hover{
+  color: #d9d8d8 !important;
+}
+.nav-link {
+  color: var(--color-accent) !important;
+}
+
+.text-darkBlue {
+  color: var(--font-color);
+}
+
+.text-lightBlue {
+  color: var(--font-color);
+}
+
+
+.cat-input {
+  background-color: var(--color-primary);
+}
+
+.btn-lightPurple {
+  background-color: var(--font-color);
+  color: white;
+}
+
+.btn-lightPurple:hover {
+  background-color: var(--color-dark) !important;
+  color: white !important;
+}
+
+.text-lightPurple {
+  color: var(--font-color);
+}
+
+.form-control {
+  border-color: var(--font-color);
+  background-color: var(--color-primary);
+}
+.form-select {
+  border-color: var(--font-color) !important;
+  background-color: var(--color-primary) !important;
+}
+
+label {
+  color: var(--font-color);
+}
+
+.fa-circle-minus,
+.fa-circle-plus {
+  font-size: 1.5em;
+}
+
+.category-name {
+  color: var(--font-color);
+}
+
+hr {
+  background-color: var(--color-accent);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--color-dark);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: var(--color-light);
+}
+
+
+
+.checkbox {
+  width: 5em !important;
+  height: 2em !important;
+  margin: 0 !important;
+}
+
+.modal-content {
+  border-color: var(--font-color);
+  background-color: var(--color-primary) !important;
+  color: var(--font-color);
+}
+
+.checkbox:checked {
+  background-color: var(--font-color) !important;
+  border: var(--font-color);
+}
+
+.theme-light {
+  --color-primary: #fbf8f6;
+  --color-secondary: #fbfbfe;
+  --color-accent: rgba(0, 0, 0, 0.55);
+  --font-color: #f06953;
+  --color-dark: #7743db;
+  --color-light: #ea3772;
+}
+
+.theme-dark {
+  --color-primary: rgb(36, 49, 51);
+  --color-secondary: rgba(42, 44, 45, 0.694);
+  --color-accent: #d9d8d8;
+  --font-color: #f06953;
+  --color-dark: #d9d8d8;
+  --color-light: #ea3772;
+}
+
+.xl {
+  --size: 2em;
+}
+
+.l {
+  --size: 1.7em;
+}
+
+.m {
+  --size: 1.5em;
+}
+
+.s {
+  --size: 1em;
+}
+
+.xs {
+  --size: 0.8em;
+}

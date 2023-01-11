@@ -1,0 +1,149 @@
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: var(--color-primary);
+    font-size: var(--size) !important;
+}
+
+.bg-lightPink {
+    background-color: var(--color-secondary);
+}
+
+form {
+    color: var(--font-color) !important;
+}
+
+.nav-link {
+    color: var(--color-accent) !important;
+}
+
+.text-darkBlue {
+    color: var(--font-color);
+}
+
+.text-lightBlue {
+    color: var(--font-color);
+}
+
+.btn-login {
+    background-color: #3b3486;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #7743db !important;
+    color: white !important;
+}
+
+.cat-input {
+    background-color: var(--color-primary);
+}
+
+.btn-lightPurple {
+    background-color: var(--font-color);
+    color: white;
+}
+
+.btn-lightPurple:hover {
+    background-color: var(--color-dark) !important;
+    color: white !important;
+}
+
+.text-lightPurple {
+    color: var(--font-color);
+}
+
+.form-control {
+    border-color: var(--font-color);
+    background-color: var(--color-primary);
+}
+.form-select{
+    border-color: var(--font-color) !important;
+    background-color: var(--color-primary) !important;
+}
+
+label {
+    color: var(--font-color);
+}
+
+.fa-circle-minus,
+.fa-circle-plus {
+    font-size: 1.5em;
+}
+
+.category-name {
+    color: var(--font-color);
+}
+
+hr {
+    background-color: var(--color-accent);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background-color: var(--color-dark);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background-color: var(--color-light);
+}
+
+.picSave {
+    border-color: var(--color-dark);
+    background-color: var(--color-primary);
+    color: var(--font-color);
+}
+
+.checkbox {
+    width: 5em !important;
+    height: 2em !important;
+    margin: 0 !important;
+}
+
+.modal-content {
+    border-color: var(--font-color);
+    background-color: var(--color-primary) !important;
+    color: var(--font-color);
+}
+
+.checkbox:checked {
+    background-color: var(--font-color) !important;
+    border: var(--font-color);
+}
+
+.theme-light {
+    --color-primary: #f5f5f5;
+    --color-secondary: #fbfbfe;
+    --color-accent: rgba(0, 0, 0, 0.55);
+    --font-color: #3b3486;
+    --color-dark: #7743db;
+    --color-light: #d9d8d8;
+}
+
+.theme-dark {
+    --color-primary: rgb(36, 49, 51);
+    --color-secondary: rgba(42, 44, 45, 0.694);
+    --color-accent: #d9d8d8;
+    --font-color: #caafff;
+    --color-dark: #d9d8d8;
+    --color-light: #7843db68;
+}
+
+.xl {
+    --size: 2em;
+}
+
+.l {
+    --size: 1.7em;
+}
+
+.m {
+    --size: 1.5em;
+}
+
+.s {
+    --size: 1em;
+}
+
+.xs {
+    --size: 0.8em;
+}
