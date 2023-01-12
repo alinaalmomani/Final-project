@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 //Create instance of PHPMailer
-$mail = new PHPMailer();
+$mail = new PHPMailer(true);
 //Set mailer to use smtp
 $mail->isSMTP();
 //Define smtp host
@@ -21,7 +21,8 @@ $mail->SMTPSecure = "tls";
 $mail->Port = "587";
 $mail->Username = "businessexpence@gmail.com";
 //Set gmail password
-$mail->Password = "vffitvwyacuaorgn";
+//$mail->Password = "vffitvwyacuaorgn";vbqzywlwvsyriavm
+$mail->Password = "vbqzywlwvsyriavm";
 //Set sender email
 $mail->setFrom('businessexpence@gmail.com');
 //Enable HTML
@@ -105,7 +106,7 @@ if (isset($_POST['login'])) {
             if($run_query){
                 $subject = "Password Reset Code";
                 $message = "Your password reset code is $code";
-                $sender = "From: businessexpence@gmail.com";
+                $sender = " businessexpence@gmail.com";
                 $mail->Subject = $subject;
                 $mail->Body = $message;
                 $mail->setFrom($sender);
@@ -114,8 +115,7 @@ if (isset($_POST['login'])) {
                     $info = "We've sent a passwrod reset otp to your email - $email";
                     $_SESSION['info'] = $info;
                     $_SESSION['email'] = $email;
-                $mail->smtpClose();
-
+                    $mail->smtpClose();
                     header('location: reset-code.php');
                     exit();
                 }else{

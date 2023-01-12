@@ -22,19 +22,19 @@ $(document).ready(function () {
     }
     //size change
     switch (localStorage.getItem("size")) {
-        case '1':
+        case 'xs':
             setSize("xs");
             break;
-        case '2':
+        case 's':
             setSize("s");
             break;
-        case '3':
+        case 'm':
             setSize("m");
             break;
-        case '4':
+        case 'l':
             setSize("l");
             break;
-        case '5':
+        case 'xl':
             setSize("xl");
             break;
         default:
@@ -55,27 +55,31 @@ function translate(lng, tagAttr) {
         $("#enTranslator").css({ color: "var( --color-accent)", "border-color": "transparent" });
     }
 };
+
+
 //change the direction of text depending on the language
 function ar() {
-    var list, i, switching, b, shouldSwitch;
-    list = document.getElementById("navigation");
-    switching = true;
-    while (switching) {
-        switching = false;
-        b = list.getElementsByTagName("LI");
-        for (i = 0; i < b.length - 1; i++) {
-            shouldSwitch = false;
-            if (b[i].value < b[i + 1].value) {
-                shouldSwitch = true;
-                break;
+    if (window.innerWidth > 576) {
+        var list, i, switching, b, shouldSwitch;
+        list = document.getElementById("navigation");
+        switching = true;
+        while (switching) {
+            switching = false;
+            b = list.getElementsByTagName("LI");
+            for (i = 0; i < b.length - 1; i++) {
+                shouldSwitch = false;
+                if (b[i].value < b[i + 1].value) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                switching = true;
             }
         }
-        if (shouldSwitch) {
-            b[i].parentNode.insertBefore(b[i + 1], b[i]);
-            switching = true;
-        }
-    }
-    $("#navigation").appendTo(".collapse");
+        $("#navigation").appendTo(".collapse");
+}     
 };
 function en() {
     var list, i, switching, b, shouldSwitch;
@@ -134,7 +138,9 @@ function setTheme(themeName) {
 function toggleTheme() {
     if (localStorage.getItem("theme") === "theme-dark") {
         setTheme("theme-light");
+        window.location.reload('dashboared.php');
     } else {
         setTheme("theme-dark");
+        window.location.reload('dashboared.php');
     }
 };

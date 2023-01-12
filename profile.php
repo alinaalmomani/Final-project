@@ -70,7 +70,7 @@ if (isset($_POST['save'])) {
         <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -99,7 +99,7 @@ if (isset($_POST['save'])) {
                             <ol class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#custom" lang-tag="customize"></li>
                                 <li><a class="dropdown-item" href="../pr/profile.php" lang-tag="profile"></a></li>
-                                <li><a class="dropdown-item" href="logout.php"  lang-tag="logout"></a></li>
+                                <li><a class="dropdown-item" href="logout.php" lang-tag="logout"></a></li>
                             </ol>
                         </li>
                     </ul>
@@ -128,7 +128,7 @@ if (isset($_POST['save'])) {
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -149,9 +149,10 @@ if (isset($_POST['save'])) {
                 <div class="row">
                     <div class="col-md-5">
                         <div class="photoChange mt-4 pt-4">
-                            <div class="text-start ">
-                                <img class=" img rounded-circle avatar" onclick="document.getElementById('file-input').click()" src="<?php echo $userprofile; ?>" height="300" id="profilePhotoP" alt="Profile Picture">
-                            </div>
+                            <figure class="text-start figure">
+                                <img class=" img border border-1 rounded-circle avatar figure-img" onclick="document.getElementById('file-input').click()" src="<?php echo $userprofile; ?>" height="300" id="profilePhotoP" alt="Profile Picture">
+                                <figcaption class="figure-caption text-center" lang-tag="tochangephoto"></figcaption>
+                            </figure>
                             <div class="input-group ">
                                 <input type="file" name='file' id="file-input" style="display: none;" class="form-control rounded-pill" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 
@@ -186,7 +187,7 @@ if (isset($_POST['save'])) {
                             </label>
                             <input type="email" class="form-control" name="email" id="email" value="<?php echo $useremail; ?>" disabled>
                         </div>
-                        <label for="last_name" lang-tag="lastName">
+                        <label for="last_name" lang-tag="bName">
                         </label>
                         <input type="text" class="form-control text-center" name="b_name" id="last_name" value="<?php echo $bname; ?>" placeholder="Last Name">
 

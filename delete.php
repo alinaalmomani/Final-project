@@ -1,16 +1,19 @@
 <?php 
 include("session.php");
 $rowid= $_POST['rowid'];
-if ($_SERVER['HTTP_REFERER'] == 'http://localhost/pr/werehouse.php') {
+$str = $_SERVER['HTTP_REFERER'];
+$we = str_contains($str, 'editwarehouse');
+$history = str_contains($str, 'edithistory');
+if ($we) {
     $query = mysqli_query($con, "DELETE   FROM  warehouse WHERE id  = '$rowid' ");
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-} elseif($_SERVER['HTTP_REFERER'] == 'http://localhost/pr/werehouse.php') {
+    header('Location: werehouse.php' );
+} elseif($history) {
     $query = mysqli_query($con, "DELETE   FROM  sell WHERE sell_id  = '$rowid' ");
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: history.php' );
 
 }else{
     $query = mysqli_query($con, "DELETE   FROM  category WHERE category_id  = '$rowid' ");
-    header('Location:http://localhost/pr/add-category.php');
+    header('Location:add-catagory.php');
 }
 
 ?>

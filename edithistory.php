@@ -25,7 +25,7 @@ unset($editd);
     <script src="../pr/js/translate.js"></script>
 
     <link href="../pr/css/css.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>Edit/Delete Row</title>
 </head>
 
 <body id="text" onload="translate('en','lang-tag')">
@@ -33,7 +33,7 @@ unset($editd);
         <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -62,7 +62,7 @@ unset($editd);
                             <ol class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#custom" lang-tag="customize"></li>
                                 <li><a class="dropdown-item" href="../pr/profile.php" lang-tag="profile"></a></li>
-                                <li><a class="dropdown-item" href="#" lang-tag="logout"></a></li>
+                                <li><a class="dropdown-item" href="logout.php" lang-tag="logout"></a></li>
                             </ol>
                         </li>
                     </ul>
@@ -91,7 +91,7 @@ unset($editd);
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -103,14 +103,16 @@ unset($editd);
             </div>
         </div>
     </section>
-    <div class="container">
-        <?php
-        if (isset($_GET['edit'])) {
-            $rowId = $_GET['edit'];
-            $editd = mysqli_query($con, "SELECT warehouse.name as name  , sell.time_date as date, sell.quantity_sell as quantity  , sell.price as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id  join sell on sell.warehouse = warehouse.id where sell.sell_id='$rowId'");
-            echo '<form action="update.php" method="post">';
-            echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
-            echo '<table class="table text-darkBlue" >
+    <section>
+        <div class="container p-5 m-auto">
+            <?php
+            if (isset($_GET['edit'])) {
+                $rowId = $_GET['edit'];
+                $editd = mysqli_query($con, "SELECT warehouse.name as name  , sell.time_date as date, sell.quantity_sell as quantity  , sell.price as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id  join sell on sell.warehouse = warehouse.id where sell.sell_id='$rowId'");
+                echo '<p class="sure text-center" lang-tag="Esure?"></p>';
+                echo '<form action="update.php" method="post">';
+                echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
+                echo '<table class="table text-darkBlue" >
                     <thead>
                         <tr>
                             <th lang-tag="product"></th>
@@ -121,21 +123,22 @@ unset($editd);
                             
                         </tr>
                     </thead>';
-            while ($row = mysqli_fetch_assoc($editd)) {
-                echo '
+                while ($row = mysqli_fetch_assoc($editd)) {
+                    echo '
                 <tr><td><input value="' . $row['name'] . '" name="Wname" class="form-control"></td>';
-                echo '<td><input value="' . $row['date'] . '" name="Sdate" class="form-control"></td>';
-                echo '<td><input value="' . $row['quantity'] . '" name="Squa" class="form-control"></td>';
-                echo '<td><input value="' . $row['cost'] . '" name="Scost" class="form-control"></td>';
-                echo '<td><input value="' . $row['j'] . '" name="cname" class="form-control"></td></tr></table>';
-            };
-            echo ' <button type="submit"> edit</button></form>';
-        } else {
-            $rowId = $_GET['del'];
-            $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , sell.price as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id  join sell on sell.warehouse = warehouse.id where sell.sell_id='$rowId'");
-            echo '<form action="delete.php" method="post">';
-            echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
-            echo '<table class="table text-darkBlue" >
+                    echo '<td><input value="' . $row['date'] . '" name="Sdate" class="form-control"></td>';
+                    echo '<td><input value="' . $row['quantity'] . '" name="Squa" class="form-control"></td>';
+                    echo '<td><input value="' . $row['cost'] . '" name="Scost" class="form-control"></td>';
+                    echo '<td><input value="' . $row['j'] . '" name="cname" class="form-control"></td></tr></table>';
+                };
+                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+            } else {
+                $rowId = $_GET['del'];
+                $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , sell.price as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id  join sell on sell.warehouse = warehouse.id where sell.sell_id='$rowId'");
+                echo '<p class="sure text-center" lang-tag="sure?"></p>';
+                echo '<form action="delete.php" method="post">';
+                echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
+                echo '<table class="table text-darkBlue" >
                     <thead>
                         <tr>
                             <th lang-tag="product"></th>
@@ -146,17 +149,18 @@ unset($editd);
                             
                         </tr>
                     </thead>';
-            while ($row = mysqli_fetch_assoc($editd)) {
-                echo '<tr><td>' . $row['name'] . '</td>';
-                echo '<td>' . $row['date'] . '</td>';
-                echo '<td>' . $row['quantity'] . '</td>';
-                echo '<td>' . $row['cost'] . '</td>';
-                echo '<td>' . $row['j'] . '</td></tr></table>';
-            };
-            echo ' <button type="submit"> edit</button></form>';
-        }
-        ?>
-    </div>
+                while ($row = mysqli_fetch_assoc($editd)) {
+                    echo '<tr><td>' . $row['name'] . '</td>';
+                    echo '<td>' . $row['date'] . '</td>';
+                    echo '<td>' . $row['quantity'] . '</td>';
+                    echo '<td>' . $row['cost'] . '</td>';
+                    echo '<td>' . $row['j'] . '</td></tr></table>';
+                };
+                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+            }
+            ?>
+        </div>
+    </section>
 </body>
 <script src="../pr/js/index.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

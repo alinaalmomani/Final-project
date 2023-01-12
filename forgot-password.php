@@ -1,6 +1,7 @@
 <?php require_once "validation.php" ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Forgot Password</title>
@@ -15,37 +16,38 @@
 </head>
 
 <body id="login">
-    <div class="container p-5 my-5">
-        <div class="row">
-            <div class="col-md-4 offset-md-4 form ">
-                <form action="forgot-password.php" method="POST" autocomplete="">
-                    <h2 class="text-center">Forgot Password</h2>
-                    <p class="text-center">Enter your email address</p>
-                    <?php
-                    if (count($errors) > 0) {
-                    ?>
-                        <div class="alert alert-danger text-center">
-                            <?php
-                            foreach ($errors as $error) {
-                                echo $error;
-                            }
-                            
-                            ?>
+    <section>
+        <div class="container p-5 my-5">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 form ">
+                    <form action="forgot-password.php" method="POST" autocomplete="">
+                        <h2 class="text-center">Forgot Password</h2>
+                        <p class="text-center">Enter your email address</p>
+                        <?php
+                        if (count($errors) > 0) {
+                        ?>
+                            <div class="alert alert-danger text-center">
+                                <?php
+                                foreach ($errors as $error) {
+                                    echo $error;
+                                }
+                                ?>
+                            </div>
+                        <?php
+                            unset($errors);
+                        }
+                        ?>
+                        <div class="form-group mb-3">
+                            <input class="form-control" type="email" name="email" placeholder="Enter email address">
                         </div>
-                    <?php
-                        unset($errors);}
-                    ?>
-                    <div class="form-group mb-3">
-                        <input class="form-control" type="email" name="email" placeholder="Enter email address">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control button" type="submit" name="check-email" value="Continue">
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <input class="form-control button" type="submit" name="check-email" value="Continue">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../pr/js/login.js"></script>

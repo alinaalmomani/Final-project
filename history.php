@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -106,7 +106,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -147,7 +147,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                         <div class="w-50 mx-auto">
                             <div class="form-floating ">
                                 <input type="number" class="form-control" id="floatingInput" min="1" name="warehousecost" placeholder="lang-tag=' entercost'">
-                                <label for="floatingInput" lang-tag="entercost"></label>
+                                <label for="floatingInput" lang-tag="cost"></label>
                             </div>
                         </div>
                         <button class="btn btn-lightPurple mt-2" lang-tag="save"></button>
@@ -163,7 +163,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                             </div>
                         </form>
                     </div>
-                    <table class="table text-darkBlue" id="werehouseTable">
+                    <table class="table text-darkBlue table-sm" id="werehouseTable">
                         <thead>
                             <tr>
                                 <th lang-tag="product"></th>

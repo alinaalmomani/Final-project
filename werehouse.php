@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -100,7 +100,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -114,7 +114,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
     </section>
     <section>
         <div class="container mx-auto my-4 pt-2 text-center">
-            <h4 class="h4 text-darkBlue" lang-tag="werehouse"></h4>
+            <h4 class="h4 text-darkBlue table-sm" lang-tag="werehouse"></h4>
             <br>
             <div class=" container mx-auto w-50">
                 <form action="insert.php" method="POST" class="form-control">
@@ -134,7 +134,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <div class="form-floating">
+                            <div class="form-floating mb-3">
                                 <select class="form-select" id="floatingSelect" name="categoryname" aria-label="Floating label select example">
                                     <?php
                                     while ($row = mysqli_fetch_assoc($category)) {
@@ -145,13 +145,13 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                             </div>
                         </div>
                         <div class="col-md-6 ">
-                            <div class="form-floating ">
+                            <div class="form-floating mb-3">
                                 <input type="number" class="form-control" id="floatingInput" min="1" name="warehousecost" placeholder="lang-tag=' entercost'">
-                                <label for="floatingInput" lang-tag="entercost"></label>
+                                <label for="floatingInput" lang-tag="cost"></label>
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-lightPurple mt-2" lang-tag="save"></button>
+                    <button class="btn btn-lightPurple " lang-tag="save"></button>
                 </form>
             </div>
             <div class="container">

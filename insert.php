@@ -20,7 +20,7 @@ if ($_SERVER['HTTP_REFERER'] == 'http://localhost/pr/werehouse.php') {
     while ($row = mysqli_fetch_assoc($warehouse)) {
         $wid = $row['id'];
     }
-    $query = mysqli_query($con, "INSERT INTO sell (quantity_sell,price,user_id,waerhouse  ) VALUES ( '$productquantity','$cost','$user_id','$wid')");
+    $query = mysqli_query($con, "INSERT INTO sell (quantity_sell,price,user_id,warehouse  ) VALUES ( '$productquantity','$cost','$user_id','$wid')");
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }else{
     $categoryname = $_POST['catname'];

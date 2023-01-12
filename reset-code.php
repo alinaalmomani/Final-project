@@ -21,8 +21,8 @@ if ($email == false) {
 
 </head>
 
-<body>
-    <div class="container">
+<body id="login">
+    <section <div class="container p-5 my-5">
         <div class="row">
             <div class="col-md-4 offset-md-4 form">
                 <form action="reset-code.php" method="POST" autocomplete="off">
@@ -34,7 +34,8 @@ if ($email == false) {
                             <?php echo $_SESSION['info']; ?>
                         </div>
                     <?php
-                        unset($_SESSION['info']);}
+                        unset($_SESSION['info']);
+                    }
                     ?>
                     <?php
                     if (count($errors) > 0) {
@@ -50,7 +51,7 @@ if ($email == false) {
                     <?php
                     }
                     ?>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <input class="form-control" type="number" name="otp" placeholder="Enter code" required>
                     </div>
                     <div class="form-group">
@@ -59,8 +60,8 @@ if ($email == false) {
                 </form>
             </div>
         </div>
-    </div>
 
+    </section>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../pr/js/login.js"></script>

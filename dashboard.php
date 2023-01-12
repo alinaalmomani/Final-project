@@ -6,6 +6,8 @@ $charts = mysqli_query($con, "SELECT sell.time_date as time_date FROM `sell` inn
 $charts2 = mysqli_query($con, "SELECT warehouse.name as pname FROM `warehouse` inner join sell on warehouse.id=sell.warehouse where sell.user_id='$user_id' group by year(sell.time_date),pname;");
 $charts3 = mysqli_query($con, "SELECT sum(sell.quantity_sell) as Q   FROM sell  join warehouse on warehouse= id where user_id='$user_id' group by warehouse.name");
 $charts4 = mysqli_query($con, "SELECT  warehouse.name as pname  FROM sell  join warehouse on warehouse= id where user_id='$user_id' group by warehouse.name ");
+$area = mysqli_query($con, "SELECT quantity  FROM `warehouse` where user='$user_id'  group by name ,quantity");
+$area2 = mysqli_query($con, "SELECT name  FROM `warehouse` where user='$user_id'  group by name ,quantity");
 $businessname = mysqli_query($con, "SELECT  businessname  FROM user  where id='$user_id'");
 while ($row = mysqli_fetch_assoc($businessname)) {
     $bname = $row['businessname'];
@@ -41,10 +43,10 @@ while ($row = mysqli_fetch_assoc($sell)) {
 
 <body id="text" onload="translate('en','lang-tag');">
     <section>
-        <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
+        <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow text-center">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -102,7 +104,7 @@ while ($row = mysqli_fetch_assoc($sell)) {
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -115,57 +117,99 @@ while ($row = mysqli_fetch_assoc($sell)) {
         </div>
     </section>
     <section>
-        <div class="container">
-            <div class="row py-5">
+        <div class="container mt-3 pt-1 mx-auto">
+            <div class="d-md-flex justify-content-sm-center   ">
+                <div class="col-md-6">
+                    <div class="container text-center mt-1 ">
+                        <h2 class="text-darkBlue h2" lang-tag="sellCharts"></h2>
+                        <div class="charts  ">
+                            <div class="liner ">
+                                <h4 class="text-lightBlue h4" lang-tag="yearly"></h4>
+                                <div class="container">
+                                    <canvas id="myChart">
+                                    </canvas>
+                                </div>
+                            </div>
+                            <div class="line ">
+                                <h4 class="text-lightBlue h4" lang-tag="quantity"></h4>
+                                <div class="container">
+                                    <canvas id="myChart2">
+                                    </canvas>
+                                </div>
+                            </div>
 
-                <div class="container  my-2 col-8 ">
-                    <h5 lang-tag="mostSold" class="text-center text-darkBlue"></h5>
-                    <div class="d-flex justify-content-center text-center ">
-                        <?php $count = 1;
-                        while ($row = mysqli_fetch_assoc($cost)) {
-                            if ($count) { ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 vr">
+                    <div class="container text-center mt-2 pt-1 justify-content-center">
+                        <div class="   shadow rounded p-2 my-3  ">
+                            <h5 lang-tag="mostSold" class="h2 text-darkBlue"></h5>
+                            <div class="d-sm-flex p-3">
+                                <div class="col-sm-8 d-flex">
+                                    <?php $count = 1;
+                                    while ($row = mysqli_fetch_assoc($cost)) {
+                                        if ($count) { ?>
+
+                                            <label class=" ps-4 text-capitalize">
+                                                <?php echo $count . ". " . $row['pname']; ?>
+                                            </label>
+
+                                    <?php }
+                                        $count++;
+                                    } ?>
+                                </div>
                                 <div class="col-sm-4">
-                                    <label class="rounded-pill border border-1 mx-5  p-1 px-5">
-                                        <?php echo $count . ". " . $row['pname']; ?>
+                                    <i class=" fa-solid fa-money-bill-wave "></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="  shadow rounded p-3  my-3 ">
+                            <h5 class="h2 text-darkBlue" lang-tag="revenue"></h5>
+                            <div class="d-sm-flex p-3">
+                                <div class="col-sm-4">
+                                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label class="ps-4 text-capitalize" id="income">
+                                        <?php echo $revenue; ?>
                                     </label>
                                 </div>
-                        <?php }
-                            $count++;
-                        } ?>
-                    </div>
-                </div>
-                <div class="container text-center  my-2 col-4">
-                    <h5 class="text-darkBlue h5" lang-tag="revenue"></h5>
-                    <label class="rounded-pill border border-1 mx-5 p-1 px-5" id="income">
-                        <?php echo $revenue; ?>
-                    </label>
-                </div>
-            </div>
-            <div class="container text-center mt-1 p-5">
-                <h2 class="text-darkBlue h2" lang-tag="sellCharts"></h2>
-                <div class="chart d-flex ">
-                    <div class="liner col-md-6">
-                        <h4 class="text-lightBlue h4" lang-tag="yearly"></h4>
-                        <div class="container">
-                            <canvas id="myChart">
-                            </canvas>
+                            </div>
+
+
+
                         </div>
                     </div>
-                    <div class="line col-md-6">
-                        <h4 class="text-lightBlue h4" lang-tag="quantity"></h4>
-                        <div class="container">
-                            <canvas id="myChart2">
-                            </canvas>
+                    <div class="container ">
+                        <div class="polerarea">
+                            <h4 class="text-lightBlue text-center h2" lang-tag="werehouse"></h4>
+                            <div class="container">
+                                <canvas id="myChart3">
+                                </canvas>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+
 
         </div>
     </section>
     <script src="../pr/js/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        function color() {
+            if (localStorage.getItem("theme") === "theme-dark") {
+                Chart.defaults.color = '#000';
+                Chart.defaults.borderColor = '#000';
+            } else {
+                var color = "#000000";
+            }
+        };
+        color();
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {
             type: 'bar',
@@ -181,8 +225,13 @@ while ($row = mysqli_fetch_assoc($sell)) {
                                 echo '"' . explode("-", $row['time_date'])[0] . '",';
                             }; ?>],
                     backgroundColor: [
-                        '#FA6856', '#EC6967', '#F93960', '#F28B2B', '#F8A650', '#EA3772', '#E9892A'
+                        '#ea3745',
+                        '#f46161',
+                        '#e02c3e',
+                        '#d61f37',
+                        '#cc0d30'
                     ],
+
                     borderWidth: 1
                 }]
             },
@@ -196,13 +245,7 @@ while ($row = mysqli_fetch_assoc($sell)) {
                         },
                         min: '2019',
                     },
-                    x: {
-                        title: {
-                            color: '#5A5A5A',
-                            display: true,
-                            text: 'Products'
-                        }
-                    }
+
                 }
             }
         });
@@ -225,7 +268,11 @@ while ($row = mysqli_fetch_assoc($sell)) {
                         }; ?>
                     ],
                     backgroundColor: [
-                        '#FA6856', '#EC6967', '#F93960', '#F28B2B', '#F8A650', '#EA3772', '#E9892A'
+                        '#ea3745',
+                        '#f46161',
+                        '#e02c3e',
+                        '#d61f37',
+                        '#cc0d30'
                     ],
                     borderWidth: 1
                 }]
@@ -235,14 +282,34 @@ while ($row = mysqli_fetch_assoc($sell)) {
                     y: {
                         beginAtZero: true
                     },
-                    x: {
-                        title: {
-                            color: '#5A5A5A',
-                            display: true,
-                            text: 'Products'
-                        }
-                    }
+
                 }
+            }
+        });
+        const char = document.getElementById('myChart3');
+        new Chart(char, {
+            type: 'polarArea',
+            data: {
+                labels: [
+                    <?php
+                    while ($row = mysqli_fetch_assoc($area2)) {
+                        echo '"' . $row['name'] . '",';
+                    }; ?>
+                ],
+                datasets: [{
+                    label: 'Quantity in Warehouse',
+                    data: [<?php
+                            while ($row = mysqli_fetch_assoc($area)) {
+                                echo '"' . $row['quantity'] . '",';
+                            }; ?>],
+                    backgroundColor: [
+                        '#ea3745',
+                        '#f46161',
+                        '#e02c3e',
+                        '#d61f37',
+                        '#cc0d30'
+                    ]
+                }]
             }
         });
     </script>

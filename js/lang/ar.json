@@ -22,13 +22,17 @@
     "delete": "حذف",
     "close": "إغلاق",
     "sure?": "هل أنت متأكد أنك تريد حذف هذا الصف؟",
+    "Esure?": "هل أنت متأكد أنك تريد التعديل على هذاالصف؟",
     "customize": "تخصيص",
     "revenue": "ربح",
     "changeLang": "تغيير اللغة",
     "changeFont": "تغيير حجم الخط",
     "changeTheme": "تغيير المظهر",
-    "mostSold":"الاكثر مبيعا",
-    "entername":"اسم المنتج",
+    "mostSold": "الاكثر مبيعا",
+    "entername": "اسم المنتج",
     "entercatname": "اسم الفئة",
-    "entercost": "تكلفة"
+    "cost": "تكلفة",
+    "price": "السعر",
+    "tochangephoto":"اضغط على الصورة للتغير",
+    "bName":"اسم الشركة"
 }

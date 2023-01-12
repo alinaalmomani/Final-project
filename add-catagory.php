@@ -34,7 +34,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><img src="logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
@@ -92,7 +92,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <p lang-tag="changeTheme">Change theme</p>
+                                    <p lang-tag="changeTheme"></p>
                                     <div class="form-check form-switch pt-3 text-center ps-0">
                                         <input onchange="toggleTheme()" class="form-check-input float-none checkbox" type="checkbox" role="switch" id="myCheckBox" />
                                     </div>
@@ -105,28 +105,30 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         </div>
     </section>
     <section>
-        <div class="container mt-5 mx-auto "></div>
-        <div class="container  text-center text w-50">
+
+        <div class="container  text-center mt-5 w-50">
             <div class="add-catagorie">
                 <h4 class="text-darkBlue" lang-tag="addCategory"></h4>
                 <hr>
                 <div class="container p-0 ">
                     <div class="container mb-4">
                         <form action="insert.php" method="POST">
-                            <div class=" mx-auto row">
-                                <div class="col-10">
-                                    <div class="form-floating ">
-                                        <input type="text" class="form-control" id="floatingInput" name="catname" placeholder="lang-tag='entercatname'">
-                                        <label for="floatingInput" lang-tag="entercatname"></label>
-                                    </div>
+                            <div class=" mx-auto">
+
+                                <div class="form-floating ">
+                                    <input type="text" class="form-control mb-3" id="floatingInput" name="catname" placeholder="lang-tag='entercatname'">
+                                    <label for="floatingInput" lang-tag="entercatname"></label>
                                 </div>
-                                <button class="btn btn-lightPurple  col-2" lang-tag="save"></button>
+
+
+                                <button class="btn btn-lightPurple" lang-tag="save"></button>
+
                             </div>
 
                         </form>
                     </div>
                     <div class="container">
-                        <table class="table text-darkBlue ">
+                        <table class="table text-darkBlue table-sm ">
                             <thead>
                                 <tr>
                                     <th lang-tag="category"></th>
@@ -137,11 +139,11 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                             while ($m = mysqli_fetch_array($category)) {
                                 echo '<tr>';
                                 echo '<td>' . $m['categoryname'] . '</td>';
-                                echo '<form action="editCat.php" method="get"><td class="text-center">                       
-                                            <a href="editCat.php?edit=' . $m['category_id'] . '" class="btn btn-lightPurple btn-sm mx-4"><i class="fa-regular fa-pen-to-square"></i></a> 
+                                echo '<form action="editCat.php" method="get" id="displaytable"><td class="text-center">                       
+                                            <a href="editCat.php?edit=' . $m['category_id'] . '" class="btn btn-lightPurple btn-sm mx-4 my-2"><i class="fa-regular fa-pen-to-square"></i></a> 
                                         ';
                                 echo '
-                                            <a href="editCat.php?del=' . $m['category_id'] . '" class="btn btn-lightPurple btn-sm mx-4"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="editCat.php?del=' . $m['category_id'] . '" class="btn btn-lightPurple btn-sm mx-4 my-2"><i class="fa-solid fa-trash-can"></i></a>
                                         </td> </form>
                                     </tr>';
                             } ?>
