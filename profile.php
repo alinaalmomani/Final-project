@@ -62,7 +62,7 @@ if (isset($_POST['save'])) {
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="../pr/js/translate.js"></script>
     <link href="../pr/css/css.css" rel="stylesheet" />
-    <title>Project neme|Business Account </title>
+    <title>Profile</title>
 </head>
 
 <body id="text" onload="translate('en','lang-tag')">
@@ -142,7 +142,7 @@ if (isset($_POST['save'])) {
     </section>
     <section>
         <div class="container text-center mt-5 mx-auto">
-            <h4 class="text-darkBlue"><?php echo $bname  ?></h4>
+            <h4 class="h4 text-darkBlue"><?php echo $bname  ?></h4>
             <hr>
 
             <form class="form" action="" method="post" id="registrationForm" enctype='multipart/form-data'>

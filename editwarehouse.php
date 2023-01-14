@@ -130,7 +130,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                     echo '<td><input value="' . $row['cost'] . '" name="cost" class="form-control"></td>';
                     echo '<td><input value="' . $row['j'] . '" name="Catname" class="form-control"></td></tr></table>';
                 };
-                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+                echo ' <button class="btn btn-orange rounded-pill" type="submit" lang-tag="edit"></button></form>';
             } else {
                 $rowId = $_GET['del'];
                 $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , warehouse.cost as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id where warehouse.id='$rowId'");
@@ -155,7 +155,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                     echo '<td>' . $row['cost'] . '</td>';
                     echo '<td>' . $row['j'] . '</td></tr></table>';
                 };
-                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+                echo ' <button class="btn btn-orange rounded-pill" type="submit" lang-tag="delete"></button></form>';
             }
             ?>
         </div>

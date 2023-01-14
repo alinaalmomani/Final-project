@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
     <script src="../pr/js/index.js"></script>
     <script src="../pr/js/translate.js"></script>
     <link href="../pr/css/css.css" rel="stylesheet" />
-    <title>Project neme|History Expense </title>
+    <title>History Expense </title>
 </head>
 
 <body id="text" onload="translate('en','lang-tag')">
@@ -146,7 +146,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                         </div>
                         <div class="w-50 mx-auto">
                             <div class="form-floating ">
-                                <input type="number" class="form-control" id="floatingInput" min="1" name="warehousecost" placeholder="lang-tag=' entercost'">
+                                <input type="number" step="0.01"class="form-control" id="floatingInput" min="0.5" name="warehousecost" placeholder="lang-tag=' entercost'">
                                 <label for="floatingInput" lang-tag="cost"></label>
                             </div>
                         </div>

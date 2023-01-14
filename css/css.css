@@ -183,6 +183,24 @@ select {
   color: var(--color-accent) !important;
 }
 
+h1{
+  font-size: calc(var(--size) + 1.5em ) !important;
+}
+h2{
+  font-size:calc(var(--size) + 1.17em)  !important;
+}
+h3{
+  font-size: calc(var(--size) + 1em) !important;
+}
+h4{
+  font-size: calc(var(--size) + 0.83em )!important;
+}
+h5{
+  font-size:calc( var(--size) + 0.67em) !important;
+}
+h6{
+  font-size: calc(var(--size) + 0.5em) !important;
+}
 .xl {
   --size: 2em;
 }

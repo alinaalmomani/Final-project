@@ -131,7 +131,7 @@ unset($editd);
                     echo '<td><input value="' . $row['cost'] . '" name="Scost" class="form-control"></td>';
                     echo '<td><input value="' . $row['j'] . '" name="cname" class="form-control"></td></tr></table>';
                 };
-                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+                echo ' <button class="btn btn-orange rounded-pill" type="submit" lang-tag="edit"></button></form>';
             } else {
                 $rowId = $_GET['del'];
                 $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , sell.price as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id  join sell on sell.warehouse = warehouse.id where sell.sell_id='$rowId'");
@@ -156,7 +156,7 @@ unset($editd);
                     echo '<td>' . $row['cost'] . '</td>';
                     echo '<td>' . $row['j'] . '</td></tr></table>';
                 };
-                echo ' <button class="btn btn-orange rounded-pill" type="submit"> edit</button></form>';
+                echo ' <button class="btn btn-orange rounded-pill" type="submit" lang-tag="delete"></button></form>';
             }
             ?>
         </div>

@@ -53,7 +53,7 @@ if (isset($_POST['signup'])) {
 
     // Check that the password and confirm password fields match
     if ($_POST['password'] != $_POST['confirm_password']) {
-        $errors['confermPassword'] = "Password dosnt match Confirm Password.";
+        $errors['confermPassword'] = "Password dosn't match Confirm Password.";
     }
 
     // If no errors have occurred, proceed with registration

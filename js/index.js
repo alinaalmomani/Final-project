@@ -10,9 +10,9 @@ $(document).ready(function () {
         translate("ar", "lang-tag");
     });
     if (localStorage.getItem("lang") == "ar") {
-        text.setAttribute("onload", " translate('ar', 'lang-tag')");
+        text.setAttribute("onload", " translate('ar', 'lang-tag'); ar();");
     } else {
-        text.setAttribute("onload", " translate('en', 'lang-tag')");
+        text.setAttribute("onload", " translate('en', 'lang-tag'); en();");
     }
     //theme change
     if (localStorage.getItem("theme") === "theme-dark") {
@@ -47,11 +47,11 @@ function translate(lng, tagAttr) {
     translate.init(tagAttr, lng);
     translate.process();
     if (lng == "en") {
-        $("#enTranslator").css({color: "var(--font-color)", "border-color": "var(--font-color)"});
+        $("#enTranslator").css({ color: "var(--font-color)", "border-color": "var(--font-color)" });
         $("#arTranslator").css({ color: "var( --color-accent)", "border-color": "transparent" });
     }
     if (lng == "ar") {
-        $("#arTranslator").css({color: "var(--font-color)", "border-color": "var(--font-color)"});
+        $("#arTranslator").css({ color: "var(--font-color)", "border-color": "var(--font-color)" });
         $("#enTranslator").css({ color: "var( --color-accent)", "border-color": "transparent" });
     }
 };
@@ -79,7 +79,7 @@ function ar() {
             }
         }
         $("#navigation").appendTo(".collapse");
-}     
+    }
 };
 function en() {
     var list, i, switching, b, shouldSwitch;

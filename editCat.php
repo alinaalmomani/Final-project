@@ -121,7 +121,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                     echo '
                 <tr><td><input value="' . $row['categoryname'] . '" name="cname" class="form-control"></td></tr></table>';
                 };
-                echo ' <button  role="button" class="btn btn-orange rounded-pill "type="submit"> edit</button></form>';
+                echo ' <button  role="button" class="btn btn-orange rounded-pill "type="submit" lang-tag="edit"></button></form>';
             } else {
                 $rowId = $_GET['del'];
                 echo '<p class="sure text-center" lang-tag="sure?"></p>';
@@ -137,7 +137,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                 while ($row = mysqli_fetch_assoc($editd)) {
                     echo '<tr><td>' . $row['categoryname'] . '</td></tr></table>';
                 };
-                echo ' <button role="button" class="btn btn-orange rounded-pill "type="submit"> edit</button></form>';
+                echo ' <button role="button" class="btn btn-orange rounded-pill "type="submit" lang-tag="delete"></button></form>';
             }
             ?>
         </div>

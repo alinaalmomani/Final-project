@@ -1,6 +1,6 @@
 <?php
 include("session.php");
-$cost = mysqli_query($con, "SELECT warehouse.name as pname FROM sell   join warehouse on warehouse= id where user_id='$user_id' group by pname ORDER BY quantity_sell DESC  LIMIT 3  ");
+$cost = mysqli_query($con, "SELECT warehouse.name as pname FROM sell   join warehouse on warehouse= id where user_id='$user_id' group by pname ORDER BY quantity_sell,year(sell.time_date) DESC  LIMIT 3  ");
 $sell = mysqli_query($con, "SELECT SUM(warehouse.cost)as cost, SUM(price) as price FROM  sell join warehouse on warehouse.id=sell.warehouse WHERE user_id = '$user_id'");
 $charts = mysqli_query($con, "SELECT sell.time_date as time_date FROM `sell` inner join warehouse on warehouse.id=sell.warehouse where sell.user_id='$user_id' group by year(sell.time_date),warehouse.name;");
 $charts2 = mysqli_query($con, "SELECT warehouse.name as pname FROM `warehouse` inner join sell on warehouse.id=sell.warehouse where sell.user_id='$user_id' group by year(sell.time_date),pname;");
@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_assoc($sell)) {
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="../pr/js/translate.js"></script>
     <link href="../pr/css/css.css" rel="stylesheet" />
-    <title>ProjectName| dashboard</title>
+    <title>Dashboard</title>
 </head>
 
 <body id="text" onload="translate('en','lang-tag');">
@@ -145,14 +145,14 @@ while ($row = mysqli_fetch_assoc($sell)) {
                 <div class="col-md-6 vr">
                     <div class="container text-center mt-2 pt-1 justify-content-center">
                         <div class="   shadow rounded p-2 my-3  ">
-                            <h5 lang-tag="mostSold" class="h2 text-darkBlue"></h5>
+                            <h2 lang-tag="mostSold" class="h2 text-darkBlue"></h2>
                             <div class="d-sm-flex p-3">
                                 <div class="col-sm-8 d-flex">
                                     <?php $count = 1;
                                     while ($row = mysqli_fetch_assoc($cost)) {
                                         if ($count) { ?>
 
-                                            <label class=" ps-4 text-capitalize">
+                                            <label class=" ps-4 text-capitalize h6">
                                                 <?php echo $count . ". " . $row['pname']; ?>
                                             </label>
 
@@ -166,7 +166,7 @@ while ($row = mysqli_fetch_assoc($sell)) {
                             </div>
                         </div>
                         <div class="  shadow rounded p-3  my-3 ">
-                            <h5 class="h2 text-darkBlue" lang-tag="revenue"></h5>
+                            <h2 class="h2 text-darkBlue" lang-tag="revenue"></h2>
                             <div class="d-sm-flex p-3">
                                 <div class="col-sm-4">
                                     <i class="fa-solid fa-hand-holding-dollar"></i>
@@ -184,7 +184,7 @@ while ($row = mysqli_fetch_assoc($sell)) {
                     </div>
                     <div class="container ">
                         <div class="polerarea">
-                            <h4 class="text-lightBlue text-center h2" lang-tag="werehouse"></h4>
+                            <h2 class="text-lightBlue text-center h2" lang-tag="werehouse"></h2>
                             <div class="container">
                                 <canvas id="myChart3">
                                 </canvas>
