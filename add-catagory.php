@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
     <script src="../pr/js/translate.js"></script>
 
     <link href="../pr/css/css.css" rel="stylesheet" />
-    <title>Project neme|Add Catagorie </title>
+    <title>Add Catagorie </title>
 
 </head>
 
