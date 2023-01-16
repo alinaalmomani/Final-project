@@ -1,6 +1,8 @@
 <?php
+// including session.php file for user authentication
 include("session.php");
 $businessname = mysqli_query($con, "SELECT  businessname  FROM user  where id='$user_id'");
+// this gets the business name
 while ($row = mysqli_fetch_assoc($businessname)) {
     $bname = $row['businessname'];
 };
@@ -12,44 +14,42 @@ while ($row = mysqli_fetch_assoc($businessname)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="logo/icon.ico">
+    <link rel="icon" type="image/x-icon" href="../logo/icon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,600;1,200&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="../pr/js/translate.js"></script>
-
-    <link href="../pr/css/css.css" rel="stylesheet" />
+    <script src="../js/translate.js"></script>
+    <link href="../css/css.css" rel="stylesheet" />
     <title>Edit/Delete Row</title>
 </head>
+<!--this calls a function in js to translate the website-->
 
 <body id="text" onload="translate('en','lang-tag')">
     <section>
-        <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow ">
+        <div class=" navbar navbar-expand-sm navbar-light bg-lightPink shadow text-center">
             <div class="container p-0">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span><img src="logo/logo.png" alt="" width="25"></span>
+                    <span><img src="../logo/logo.png" alt="" width="25"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 " id="navigation">
                         <li class="navbar-brand" value=" 1">
-                            <img class="img-fluid" src="logo/logo.png" alt="" width="25">
+                            <img class="img-fluid" src="../logo/logo.png" alt="" width="25">
                         </li>
                         <li class="nav-item " value=" 2">
-                            <a class="nav-link" href=" ../pr/dashboard.php" lang-tag="dashboared"></a>
+                            <a class="nav-link" href=" dashboard.php" lang-tag="dashboared"></a>
                         </li>
                         <li class="nav-item " value="3">
-                            <a class="nav-link" href="../pr/add-catagory.php" lang-tag="addCategory"></a>
+                            <a class="nav-link" href="add-catagory.php" lang-tag="addCategory"></a>
                         </li>
                         <li class="nav-item " value="4">
-                            <a class="nav-link" href="../pr/history.php" lang-tag="expenseHistory"></a>
+                            <a class="nav-link" href="history.php" lang-tag="expenseHistory"></a>
                         </li>
                         <li class="nav-item " value="5">
-                            <a class="nav-link" href="../pr/werehouse.php" lang-tag="werehouse"></a>
+                            <a class="nav-link" href="werehouse.php" lang-tag="werehouse"></a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mt-2 mt-lg-0" id="user">
@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                             </a>
                             <ol class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="dropdown-item" role="button" data-bs-toggle="modal" data-bs-target="#custom" lang-tag="customize"></li>
-                                <li><a class="dropdown-item" href="../pr/profile.php" lang-tag="profile"></a></li>
+                                <li><a class="dropdown-item" href="profile.php" lang-tag="profile"></a></li>
                                 <li><a class="dropdown-item" href="logout.php" lang-tag="logout"></a></li>
                             </ol>
                         </li>
@@ -106,10 +106,12 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         <div class="container p-5 m-auto">
             <?php
             if (isset($_GET['edit'])) {
+                //if the user has pressed the edit button 
                 $rowId = $_GET['edit'];
                 $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , warehouse.cost as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id where warehouse.id='$rowId'");
                 echo '<p class="sure text-center" lang-tag="Esure?"></p>';
                 echo '<form action="update.php" method="post">';
+                //the form is to update the row
                 echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
                 echo '<table class="table text-darkBlue table-sm" id="werehouseTable">
                     <thead>
@@ -132,10 +134,12 @@ while ($row = mysqli_fetch_assoc($businessname)) {
                 };
                 echo ' <button class="btn btn-orange rounded-pill" type="submit" lang-tag="edit"></button></form>';
             } else {
+                //if the user has pressed the delete button
                 $rowId = $_GET['del'];
                 $editd = mysqli_query($con, "SELECT warehouse.name as name  , warehouse.date as date, warehouse.quantity as quantity  , warehouse.cost as cost,category.categoryname as j FROM warehouse JOIN category  ON warehouse.category_id=category.category_id where warehouse.id='$rowId'");
                 echo '<p class="sure text-center" lang-tag="sure?"></p>';
                 echo '<form action="delete.php" method="post">';
+                //the form is to delete the row
                 echo '<input type="hidden" value=' . $rowId . ' name="rowid">';
                 echo '<table class="table text-darkBlue" id="werehouseTable">
                     <thead>
@@ -161,7 +165,7 @@ while ($row = mysqli_fetch_assoc($businessname)) {
         </div>
     </section>
 </body>
-<script src="../pr/js/index.js"></script>
+<script src="../js/index.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </html>

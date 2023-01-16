@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var text = document.getElementById("text");
     //language change
+    // when the user clickes the AR or EN the system sets the language in the local storage
     $("#enTranslator").click(function () {
         localStorage.setItem("lang", "en");
         translate("en", "lang-tag");
@@ -15,12 +16,14 @@ $(document).ready(function () {
         text.setAttribute("onload", " translate('en', 'lang-tag'); en();");
     }
     //theme change
+    //set the theme in the local storage
     if (localStorage.getItem("theme") === "theme-dark") {
         setTheme("theme-dark");
     } else {
         setTheme("theme-light");
     }
     //size change
+    //if the user has a size stored on the local storage the system changes the size
     switch (localStorage.getItem("size")) {
         case 'xs':
             setSize("xs");
@@ -42,10 +45,12 @@ $(document).ready(function () {
     };
 });
 //change language
+//the function calls the translate.js
 function translate(lng, tagAttr) {
     var translate = new Translate();
     translate.init(tagAttr, lng);
     translate.process();
+    //this changes the color of the button 
     if (lng == "en") {
         $("#enTranslator").css({ color: "var(--font-color)", "border-color": "var(--font-color)" });
         $("#arTranslator").css({ color: "var( --color-accent)", "border-color": "transparent" });
@@ -55,9 +60,8 @@ function translate(lng, tagAttr) {
         $("#enTranslator").css({ color: "var( --color-accent)", "border-color": "transparent" });
     }
 };
-
-
-//change the direction of text depending on the language
+//change the order of "li" depending on the language
+//if the window is small it would not change the order of the "li"
 function ar() {
     if (window.innerWidth > 576) {
         var list, i, switching, b, shouldSwitch;
@@ -81,6 +85,7 @@ function ar() {
         $("#navigation").appendTo(".collapse");
     }
 };
+//it changes the order of "li" back to the origional
 function en() {
     var list, i, switching, b, shouldSwitch;
     list = document.getElementById("navigation");
@@ -103,6 +108,7 @@ function en() {
     $("#user").appendTo(".collapse");
 };
 //change size 
+//calls the setSize() function of size based on the range input 
 function sizeChange() {
     const range = document.querySelector("#font-size");
     let content = range.value;
@@ -126,15 +132,13 @@ function sizeChange() {
             setSize("s");
     };
 };
+//sets the size in the local storge
 function setSize(size) {
     localStorage.setItem("size", size);
     text.className = size;
 };
 //change theme
-function setTheme(themeName) {
-    localStorage.setItem("theme", themeName);
-    document.documentElement.className = themeName;
-};
+//if the toggle is clicked it checkes the theme then sets the oppesite one
 function toggleTheme() {
     if (localStorage.getItem("theme") === "theme-dark") {
         setTheme("theme-light");
@@ -143,4 +147,9 @@ function toggleTheme() {
         setTheme("theme-dark");
         window.location.reload('dashboared.php');
     }
+};
+//sets the theme in the local storge
+function setTheme(themeName) {
+    localStorage.setItem("theme", themeName);
+    document.documentElement.className = themeName;
 };
