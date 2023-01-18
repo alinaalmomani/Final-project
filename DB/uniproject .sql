@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2023 at 07:58 PM
+-- Generation Time: Jan 18, 2023 at 04:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -42,7 +42,7 @@ INSERT INTO `category` (`category_id`, `categoryname`, `userid`) VALUES
 (2, 'Furniture', 50),
 (3, 'Decoration', 50),
 (4, 'Outdoor products', 50),
-(5, 'Stationery', 50);
+(5, '  Stationery', 50);
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ INSERT INTO `sell` (`sell_id`, `quantity_sell`, `time_date`, `price`, `user_id`,
 CREATE TABLE `user` (
   `id` int(200) NOT NULL,
   `firstname` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `email` varchar(50) NOT NULL,
   `lastname` varchar(22) NOT NULL,
   `profile_path` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'default_profile.png',
@@ -97,7 +97,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `password`, `email`, `lastname`, `profile_path`, `businessname`, `code`) VALUES
-(50, 'Alina', '$2y$10$LZ1OgJ6XuAXq2c0k9ojoNu.SlHFdIkRodkB6u.RydcG', 'alinamomani2@gmail.com', 'almomani', 'logo.png', 'Graduation Project', 0);
+(50, 'Alina', '$2y$10$g119ni1PXf/LCoOoGlmupu6bWtdfZOCoCBx8Xr5Ztc/.6Ic6G5JW.', 'alinamomani2@gmail.com', 'almomani', 'logo.png', 'Graduation project', 0);
 
 -- --------------------------------------------------------
 
@@ -187,25 +187,25 @@ ALTER TABLE `warehouse`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `category_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `sell_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `sell_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Constraints for dumped tables
