@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2023 at 05:09 PM
+-- Generation Time: Jan 16, 2023 at 07:58 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -97,7 +97,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `firstname`, `password`, `email`, `lastname`, `profile_path`, `businessname`, `code`) VALUES
-(50, 'alina', '$2y$10$ILUxuKx4V/iQqAVHckQCSOSgryQ4NqoXzuRyBUNzuHK', 'alinamomani2@gmail.com', 'Momani', '4eb14e19-d5eb-47f3-b7ed-234e4dab333e (1).jpeg', 'Graduation Project', 0);
+(50, 'Alina', '$2y$10$LZ1OgJ6XuAXq2c0k9ojoNu.SlHFdIkRodkB6u.RydcG', 'alinamomani2@gmail.com', 'almomani', 'logo.png', 'Graduation Project', 0);
 
 -- --------------------------------------------------------
 

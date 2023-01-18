@@ -75,34 +75,25 @@ if (isset($_POST['signup'])) {
 
 // Check if login form has been submitted
 if (isset($_POST['login'])) {
-    // Sanitize email input and store in variable
-    $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($con, $email);
-    // Sanitize password input and store in variable
-    $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($con, $password);
-    // Check if email exists in "user" table
-    $query = "SELECT * FROM user WHERE email= '$email'";
-    //AND password= '$password'
-    $result = mysqli_query($con, $query) or die(mysqli_error($con));
-    $rows = mysqli_num_rows($result);
-    if ($rows == 1) {
-        // Check if provided password matches the one in the database
-        $query = "SELECT * FROM user WHERE email= '$email' AND password= '$password'";
-        $result = mysqli_query($con, $query) or die(mysqli_error($con));
-        if ($result) {
-            // If email and password match, store email in session and redirect to dashboard
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password'];
+    $query = "SELECT * FROM user WHERE email='$email'";
+    $result = mysqli_query($con, $query);
+    if (mysqli_num_rows($result) == 1) {
+        $user = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user['password'])) {
             $_SESSION['email'] = $email;
             header("Location: dashboard.php");
         } else {
-            // Display error message if password does not match
-            $errors['email'] = "Incorrect email or password!";
+            $errors['password'] = "Incorrect password!";
         }
     } else {
-        // Display error message if email does not exist in "user" table
         $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";
     }
 }
+
+
+
 // Check if forgot password form has been submitted
 if (isset($_POST['check-email'])) {
     // Sanitize email input and store in variable

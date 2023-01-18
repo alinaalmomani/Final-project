@@ -1,63 +1,41 @@
-<?php
+<?php 
 // Include the session file to establish a connection to the database
 include("session.php");
-
-// Get the value of the selected row to edit
-$rowid = $_POST['rowid'];
-
 // Get the URL of the page the form was submitted from
-$str = $_SERVER['HTTP_REFERER'];
-
-// Check if the URL contains the string "editwarehouse"
-$we = str_contains($str, 'editwarehouse');
-
-// Check if the URL contains the string "edithistory"
-$history = str_contains($str, 'edithistory');
-
-// Check where the form was submitted from and update the corresponding record
-if ($we) {
-    // Get the new data from the form
-    $column1 = $_POST['Wname'];
-    $column2 = $_POST['Wdate'];
-    $column3 = $_POST['Wquantity'];
-    $column4 = $_POST['Catname'];
-    $column5 = $_POST['cost'];
-
-    // Update the record in the "warehouse" table
-    $query = mysqli_query($con, "UPDATE warehouse 
-    join category  ON warehouse.category_id=category.category_id
-    SET warehouse.name = '$column1',
-        warehouse.date = '$column2',
-        warehouse.quantity = '$column3',
-        category.categoryname = '$column4',
-        warehouse.cost = '$column5'
-    WHERE warehouse.id = $rowid; ");
-    header('Location: werehouse.php');
-} elseif ($history) {
-    // Get the new data from the form
-    $column1 = $_POST['Wname'];
-    $column2 = $_POST['Sdate'];
-    $column3 = $_POST['Squa'];
-    $column4 = $_POST['cname'];
-    $column5 = $_POST['Scost'];
-
-    // Update the record in the "sell" table
-    $query = mysqli_query($con, "UPDATE warehouse 
-    join category  ON warehouse.category_id=category.category_id
-    join sell ON warehouse.id= sell.warehouse
-    SET warehouse.name = '$column1',
-        sell.time_date = '$column2',
-        sell.quantity_sell = '$column3',
-        sell.price ='$column5',
-        category.categoryname = '$column4'
-    WHERE sell.sell_id = $rowid; ");
-
-    header('Location: history.php');
-} else {
-    // Get the new data from the form
-    $editcatname = $_POST['cname'];
-
-    // Update the record in the "category" table
-    $category = mysqli_query($con, "insert into category(categoryname,userid) values ('$categoryname','$user_id')");
+if ($_SERVER['HTTP_REFERER'] == 'http://localhost/pr/pages/werehouse.php') {
+    // Get the value of the input to insert them in the row
+    $productname = $_POST['productname'];
+    $productquantity = $_POST['productquantity'];
+    $cost = $_POST['warehousecost'];
+    $categoryname = $_POST['categoryname'];
+    // select the record that has the category name
+    $q=mysqli_query($con,"SELECT category_id from category where categoryname='$categoryname'");
+    while($row = mysqli_fetch_assoc($q)){
+        $catid=$row['category_id'];
+    }
+    // insert the record into the "warehouse" table
+    $query = mysqli_query($con, "INSERT INTO warehouse (name,quantity,category_id,cost,user ) VALUES ( '$productname', '$productquantity','$catid','$cost','$user_id')");
+    // Redirect to the warehouse page
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-}?>
+} elseif($_SERVER['HTTP_REFERER'] == 'http://localhost/pr/pages/history.php') {
+     // Get the value of the input to insert them in the row
+    $productname = $_POST['entername'];
+    $productquantity = $_POST['enterQuantity'];
+    $cost = $_POST['warehousecost'];
+    // select the record that has the product name
+    $warehouse = mysqli_query($con, "SELECT id from warehouse where user='$user_id' and warehouse.name='$productname'");
+    while ($row = mysqli_fetch_assoc($warehouse)) {
+        $wid = $row['id'];
+    }
+    // insert the record into the "sell" table
+    $query = mysqli_query($con, "INSERT INTO sell (quantity_sell,price,user_id,warehouse  ) VALUES ( '$productquantity','$cost','$user_id','$wid')");
+     // Redirect to the history page
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}else{
+    // Get the value of the input to insert them in the row
+    $categoryname = $_POST['catname'];
+    // insert the record into the "category" table
+    $category =mysqli_query($con ,"INSERT INTO category(categoryname,userid) VALUES ('$categoryname','$user_id')");
+    // Redirect to the category page
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
